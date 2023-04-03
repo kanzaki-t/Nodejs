@@ -1,5 +1,15 @@
 const fs = require('fs')
 
+// promise版本的fs
+const fs = require('fs/promises')
+const { buffer } = require('stream/consumers')
+
+fs.readFileSync("./2.txt").then(buffer => {
+    console.log(buffer.toString());
+}).catch(e => {
+    console.log(e);
+})
+
 // 2.调用fs.readFile()方法读取文件
 //   参数1:读取文件的存放路径
 //   参数2:读取文件时候采用的编码格式，一般默认指定utf-8
