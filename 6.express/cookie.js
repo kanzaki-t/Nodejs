@@ -10,8 +10,13 @@
             这样服务器就可以根据cookie来识别客户端了
 
     app.get("/get-cookie",(req,res)=>{
-        // 给客户端发送一个cookie
-        res.cookie("username","admin")
+        // 给客户端发送一个cookie,第三个参数是配置对象
+        res.cookie("username","admin",{
+            expires:new Date(2022,11,7)  // 不好用
+
+            // 用来设置cookie有效时间，单位是毫秒 1秒=1000毫秒
+            maxAge:10000  // 10秒
+        })
     })
 
     app.get("/hello",(req,res)=>{
@@ -26,6 +31,13 @@
 
 
         // 用来读取客户端发回的cookie
-        req.cookie
+        req.cookies
     })
+
+    cookie是有有效期的
+        - 默认情况下，cookie的有效期就是一次会话，session
+            会话就是一次从打开到关闭浏览器的过程
+
+        - cookie一旦发送给浏览器就不能再修改了
+            但是可以通过发送新的同名的cookie来替换旧cookie，从而达到修改的目的
 */
